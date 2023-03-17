@@ -11,6 +11,7 @@ import java.util.List;
 public class StatisticService {
     private final StatisticDao statisticDao;
 
+    @Autowired
     public StatisticService(StatisticDao statisticDao) {
         this.statisticDao = statisticDao;
     }

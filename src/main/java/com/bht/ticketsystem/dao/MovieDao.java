@@ -7,10 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -19,10 +16,57 @@ public class MovieDao implements Observer {
     private static final ExecutorService executorService =  Executors.newSingleThreadExecutor();
     private final SessionFactory sessionFactory;
 
+    private Map<Integer, Movie> movieMap;
+
     @Autowired
     public MovieDao(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
+        this.movieMap = new HashMap<>();
     }
+
+    public synchronized List<Movie> getMovieList() {
+        List<Movie> movieList = new ArrayList<>();
+
+        for (Map.Entry<Integer, Movie> entry : movieMap.entrySet()) {
+            movieList.add(entry.getValue());
+        }
+
+        return movieList;
+    }
+
+    public synchronized Movie getMovieByShowingId(int showingId) {
+        return movieMap.get(showingId);
+    }
+
+    @Override
+    public void update(Observable observable, Object o) {
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                Information information = (Information) o;
+                reserve(information.getShowingId(), information.getCount());
+            }
+        };
+        executorService.submit(runnable);
+    }
+
+    private synchronized void reserve(int showingId, int count) {
+            Movie movie = getMovieByShowingId(showingId);
+            movie.changeRemaining(count);
+
+    }
+
+    /**
+
+
+     private static final ExecutorService executorService =  Executors.newSingleThreadExecutor();
+     private final SessionFactory sessionFactory;
+
+     @Autowired
+     public MovieDao(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+     }
+
 
     public synchronized List<Movie> getMovieList() {
         List<Movie> movieList = new ArrayList<>();
@@ -76,5 +120,7 @@ public class MovieDao implements Observer {
         }
 
     }
+
+    */
 
 }

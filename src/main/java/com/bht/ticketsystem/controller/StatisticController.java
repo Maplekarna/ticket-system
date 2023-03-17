@@ -19,6 +19,7 @@ import java.util.List;
 public class StatisticController {
     private final StatisticService statisticService;
 
+    @Autowired
     public StatisticController(StatisticService statisticService) {
         this.statisticService = statisticService;
     }

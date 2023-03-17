@@ -14,6 +14,7 @@ public class Statistic implements Serializable {
     private Integer ticketsSold;
     private Integer sales;
 
+
     public Statistic setShowingId(int showingId) {
         this.showingId = showingId;
         return this;

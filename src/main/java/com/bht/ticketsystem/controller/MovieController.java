@@ -14,8 +14,8 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    public void printMovieListService() {
-        movieService.printMovieList();
+    public void showMovieListService() {
+        movieService.showMovieList();
     }
 
 

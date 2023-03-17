@@ -18,12 +18,8 @@ public class MovieService {
 
     }
 
-    public synchronized void printMovieList() {
-       List<Movie> movieList = movieDao.getMovieList();
-        System.out.println("-------------------- Available Slots ----------------------");
-        for (Movie movie : movieList) {
-            System.out.println(movie);
-        }
+    public synchronized List<Movie> showMovieList() {
+        return movieDao.getMovieList();
     }
 
 

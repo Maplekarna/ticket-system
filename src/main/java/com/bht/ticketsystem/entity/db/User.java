@@ -6,6 +6,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -28,6 +29,19 @@ public class User implements Serializable {
     public User setNickname(String nickname) {
         this.nickname =nickname;
         return this;
+    }
+
+    public User iniOrderSet() {
+        this.orderSet = new HashSet<>();
+        return this;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Set<Order> getOrderSet() {

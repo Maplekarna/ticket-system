@@ -13,11 +13,11 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    public void reserveSlotService() {
-        orderService.reserveSlots();
+    public void reserveSlotService(int showingId, String userId, int count) {
+        orderService.reserveSlots(showingId, userId, count);
     }
 
-    public void getOrderHistoryService(String userId) {
+    public void showOrderHistoryService(String userId) {
         orderService.getOrderHistory(userId);
     }
 
