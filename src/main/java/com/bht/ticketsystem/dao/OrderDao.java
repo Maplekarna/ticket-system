@@ -3,7 +3,6 @@ package com.bht.ticketsystem.dao;
 import com.bht.ticketsystem.entity.db.Movie;
 import com.bht.ticketsystem.entity.db.Order;
 import com.bht.ticketsystem.entity.db.User;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,19 +12,17 @@ import java.util.*;
 @Repository
 public class OrderDao {
     private String latestOrderId;
-    private final SessionFactory sessionFactory;
 
     private Map<String, Order> orderMap;
 
 
     @Autowired
-    public OrderDao(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
+    public OrderDao() {
         this.orderMap = new HashMap<>();
         latestOrderId = "100000";
     }
 
-    public Set<Order> getOrderHistory(User user) {
+    public synchronized Set<Order> getOrderHistory(User user) {
         Set<Order> orders = user.getOrderSet();
         if (orders != null) {
             return orders;
@@ -41,7 +38,7 @@ public class OrderDao {
         newOrder.setOrderId(orderId)
                 .setNameOfMovie(movie.getName())
                 .setShowingId(movie.getShowingId())
-                .setReceiver(user.getNickname())
+                .setNickname(user.getNickname())
                 .setCount(count)
                 .setBookingTime(currentTime)
                 .setUserId(user.getUserId());

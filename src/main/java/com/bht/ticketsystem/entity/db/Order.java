@@ -1,23 +1,34 @@
 package com.bht.ticketsystem.entity.db;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 
-@Entity
-@Table(name = "orders")
+//@Entity
+//@Table(name = "orders")
 public class Order implements Serializable {
-    @Id
+//    @Id
+
+    @JsonProperty("order_id")
     private String orderId;
+
+
+    @JsonProperty("movie_name")
     private String nameOfMovie;
+
+
+    @JsonProperty("showing_id")
     private Integer showingId;
-    @Column(name="nickname")
-    private String receiver;
-    @Column(name="amount")
+
+//    @Column(name="nickname")
+    @JsonProperty("nickname")
+    private String nickname;
+
+//    @Column(name="amount")
+    @JsonProperty("count")
     private Integer count;
+
+    @JsonProperty("booking_time")
     private String bookingTime;
 
     private String userId;
@@ -38,8 +49,8 @@ public class Order implements Serializable {
         return this;
     }
 
-    public Order setReceiver(String receiver) {
-        this.receiver = receiver;
+    public Order setNickname(String nickname) {
+        this.nickname = nickname;
         return this;
     }
 
@@ -58,23 +69,15 @@ public class Order implements Serializable {
         return this;
     }
 
-    public String getOrderId() {
-        return orderId;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
 
     @Override
     public String toString() {
-        String str1 = "OrderNumber: " + orderId + "\n";
-        String str2 = "NameOfMovie: " + nameOfMovie + "\n";
-        String str3 = "ShowingId: " + showingId + "\n";
-        String str4 = "Receiver: " + receiver + "\n";
+        String str1 = "Order number: " + orderId + "\n";
+        String str2 = "Movie name: " + nameOfMovie + "\n";
+        String str3 = "Showing id: " + showingId + "\n";
+        String str4 = "Nickname: " + nickname + "\n";
         String str5 = "Count: " + count + "\n";
-        String str6 = "BookingTime: " + bookingTime + "\n";
+        String str6 = "Booking time: " + bookingTime + "\n";
 
         return str1 + str2 + str3 + str4 + str5 + str6;
     }

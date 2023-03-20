@@ -11,13 +11,12 @@ import java.util.*;
 
 @Repository
 public class UserDao {
-    private final SessionFactory sessionFactory;
+
 
     private final Map<String, User> userMap;
 
     @Autowired
-    public UserDao(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
+    public UserDao() {
         this.userMap = new HashMap<>();
     }
 
@@ -49,9 +48,6 @@ public class UserDao {
 
         return nickname;
     }
-
-
-
 
 
 }

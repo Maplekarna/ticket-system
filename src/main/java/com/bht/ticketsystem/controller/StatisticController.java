@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,16 +27,13 @@ public class StatisticController {
 
 
     @RequestMapping(value = "/statistics", method = RequestMethod.GET)
-    public List<Statistic> getStatic(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    @ResponseBody
+    public List<Statistic> getStatistic(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession(false);
-        try {
-            if (session == null) {
-                response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-                return new ArrayList<>();
-            }
-        } catch (Exception e) {
-            throw new ServletException(e);
 
+        if (session == null) {
+            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+            return new ArrayList<>();
         }
 
         return statisticService.getStatic();

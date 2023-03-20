@@ -1,5 +1,6 @@
 package com.bht.ticketsystem.entity.db;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -10,15 +11,21 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Entity
-@Table(name="user")
+//@Entity
+//@Table(name="user")
 public class User implements Serializable {
-    @Id
+//    @Id
+
+    @JsonProperty("user_id")
     private String userId;
+
+    @JsonProperty("password")
     private String password;
+
+    @JsonProperty("nickname")
     private String nickname;
 
-    @OneToMany
+//    @OneToMany
     private Set<Order> orderSet;
 
     public User setUserId(String userId) {

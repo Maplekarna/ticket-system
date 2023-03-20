@@ -14,14 +14,14 @@ import java.util.concurrent.Executors;
 @Repository
 public class MovieDao implements Observer {
     private static final ExecutorService executorService =  Executors.newSingleThreadExecutor();
-    private final SessionFactory sessionFactory;
+
 
     private Map<Integer, Movie> movieMap;
 
     @Autowired
-    public MovieDao(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
+    public MovieDao( ) {
         this.movieMap = new HashMap<>();
+        createMoviesDBManually();
     }
 
     public synchronized List<Movie> getMovieList() {
@@ -39,7 +39,7 @@ public class MovieDao implements Observer {
     }
 
     @Override
-    public void update(Observable observable, Object o) {
+    public synchronized void update(Observable observable, Object o) {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
@@ -55,6 +55,28 @@ public class MovieDao implements Observer {
             movie.changeRemaining(count);
 
     }
+
+    private void createMoviesDBManually() {
+
+        Movie movie1 = new Movie();
+        movie1.setShowingId(100).setName("Shushan Tale").setTime("2022-10-12 09:10:00").setRemaining(200).setPrice(150);
+
+        Movie movie2 = new Movie();
+        movie2.setShowingId(120).setName("Shushan Tale").setTime("2022-10-12 11:10:00").setRemaining(200).setPrice(150);
+
+        Movie movie3 = new Movie();
+        movie3.setShowingId(200).setName("Hero").setTime("2022-10-12 09:10:00").setRemaining(200).setPrice(120);
+
+        Movie movie4 = new Movie();
+        movie4.setShowingId(300).setName("Mechanic: Resurrection").setTime("2022-10-12 11:10:00").setRemaining(150).setPrice(300);
+
+        movieMap.put(movie1.getShowingId(), movie1);
+        movieMap.put(movie2.getShowingId(), movie2);
+        movieMap.put(movie3.getShowingId(), movie3);
+        movieMap.put(movie4.getShowingId(), movie4);
+
+    }
+
 
     /**
 

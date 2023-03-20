@@ -44,22 +44,28 @@ public class OrderService extends Observable {
 
 
     /** Private Methods. */
-    public synchronized void reserveSlots(int showingId, String userId, int count) {
+    public synchronized void reserveSlots(String userId, Information information) throws Exception {
+        int showingId = information.getShowingId();
+        int count = information.getCount();
+
         Movie movie = movieDao.getMovieByShowingId(showingId);
         User user = userDao.getUserByUserId(userId);
 
-        //String orderId = orderDao.createOrder(movie.getName(), showingId, user.getNickname(), count, getCurrentTime(), user.getUserId());
-        String orderId = orderDao.createOrder(movie, user, count, getCurrentTime());
+//        String orderId = orderDao.createOrder(movie, user, count, getCurrentTime());
+//
+//        if (orderId != null) {
+//            setChanged();
+//            notifyObservers(information);
+//        }
 
-        if (orderId != null) {
-            Information information = new Information(showingId, count, movie.getPrice());
+        try {
+            String orderId = orderDao.createOrder(movie, user, count, getCurrentTime());
             setChanged();
             notifyObservers(information);
-
-            System.out.println("Successfully. " + "\n" + "Your orderNumber is " + orderId);
-        } else {
-            System.out.println("Failed." + "\n" + "Cannot reserve tickets. ");
+        } catch (Exception e) {
+            throw new Exception("Thread excpetion unkown.");
         }
+
     }
 
 

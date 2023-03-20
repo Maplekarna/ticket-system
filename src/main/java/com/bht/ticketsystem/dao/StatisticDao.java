@@ -19,13 +19,13 @@ import java.util.concurrent.Executors;
 public class StatisticDao implements Observer {
     private static final ExecutorService executorService =  Executors.newSingleThreadExecutor();
 
-    private final SessionFactory sessionFactory;
+
 
     private Map<Integer, Statistic> statisticMap;
 
     @Autowired
-    public StatisticDao(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
+    public StatisticDao() {
+
         this.statisticMap = new HashMap<>();
     }
 
@@ -41,7 +41,7 @@ public class StatisticDao implements Observer {
     }
 
     @Override
-    public void update(Observable observable, Object o) {
+    public synchronized void update(Observable observable, Object o) {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
@@ -63,7 +63,6 @@ public class StatisticDao implements Observer {
 
         statistic.ticketsAdd(count);
         statistic.salesAdd(count * price);
-
 
     }
 

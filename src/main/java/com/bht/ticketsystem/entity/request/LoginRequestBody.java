@@ -1,12 +1,16 @@
 package com.bht.ticketsystem.entity.request;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class LoginRequestBody {
 
     private final String userId;
     private final String password;
 
 
-    public LoginRequestBody(String userId,  String password) {
+    @JsonCreator
+    public LoginRequestBody(@JsonProperty("user_id") String userId, @JsonProperty("password") String password) {
         this.userId = userId;
         this.password = password;
     }

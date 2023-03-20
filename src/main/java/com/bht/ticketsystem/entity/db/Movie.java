@@ -1,18 +1,19 @@
 package com.bht.ticketsystem.entity.db;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 import java.io.Serializable;
 
-@Entity
-@Table(name="movies")
+//@Entity
+//@Table(name="movies")
 public class Movie implements Serializable {
 
-    @Id
-    private Integer showingId;
+    //@Id
 
+    private Integer showingId;
     private String name;
     private String time;
     private Integer remaining;

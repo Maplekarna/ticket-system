@@ -6,10 +6,11 @@ import jakarta.persistence.Table;
 
 import java.io.Serializable;
 
-@Entity
-@Table(name="statistics")
+//@Entity
+//@Table(name="statistics")
 public class Statistic implements Serializable {
-    @Id
+
+//    @Id
     private Integer showingId;
     private Integer ticketsSold;
     private Integer sales;
@@ -37,6 +38,10 @@ public class Statistic implements Serializable {
 
     public synchronized int getTicketsSold() {
         return ticketsSold;
+    }
+
+    public int getSales() {
+        return sales;
     }
 
     public synchronized int ticketsAdd(int x) {
