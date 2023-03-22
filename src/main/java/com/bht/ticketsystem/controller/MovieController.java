@@ -27,12 +27,12 @@ public class MovieController {
     @RequestMapping(value = "/movies", method = RequestMethod.GET)
     @ResponseBody
     public List<Movie> showMovieListService(HttpServletRequest request, HttpServletResponse response)  {
-        HttpSession session = request.getSession(false);
-
-        if (session == null) {
-            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-            return new ArrayList<>();
-        }
+//        HttpSession session = request.getSession(false);
+//
+//        if (session == null) {
+//            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+//            return new ArrayList<>();
+//        }
 
         return movieService.showMovieList();
 

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.servlet.annotation.HttpConstraint;
 
 import java.io.Serializable;
 
@@ -13,10 +14,19 @@ public class Movie implements Serializable {
 
     //@Id
 
+    @JsonProperty("showing_id")
     private Integer showingId;
+
+    @JsonProperty("name")
     private String name;
+
+    @JsonProperty("time")
     private String time;
+
+    @JsonProperty("remaining")
     private Integer remaining;
+
+    @JsonProperty("price")
     private Integer price;
 
     public Movie setShowingId(int showingId) {
