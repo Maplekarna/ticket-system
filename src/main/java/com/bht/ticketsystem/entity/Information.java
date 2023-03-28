@@ -6,26 +6,26 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Information {
 
     @JsonProperty("showing_id")
-    int showingId;
+    Integer showingId;
 
     @JsonProperty("count")
-    int count;
+    Integer count;
 
     @JsonProperty("price")
-    int price;
+    Integer price;
 
 
 
 
-    public int getCount() {
+    public Integer getCount() {
         return count;
     }
 
-    public int getShowingId() {
+    public Integer getShowingId() {
         return showingId;
     }
 
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
 }

@@ -61,6 +61,7 @@ public class StatisticDao implements Observer {
 
         Statistic statistic = statisticMap.get(showingId);
 
+
         statistic.ticketsAdd(count);
         statistic.salesAdd(count * price);
 
