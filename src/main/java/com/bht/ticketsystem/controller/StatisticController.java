@@ -29,12 +29,12 @@ public class StatisticController {
     @RequestMapping(value = "/statistics", method = RequestMethod.GET)
     @ResponseBody
     public List<Statistic> getStatistic(HttpServletRequest request, HttpServletResponse response) {
-//        HttpSession session = request.getSession(false);
-//
-//        if (session == null) {
-//            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-//            return new ArrayList<>();
-//        }
+        HttpSession session = request.getSession(false);
+
+        if (session == null) {
+            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+            return new ArrayList<>();
+        }
 
         return statisticService.getStatic();
 

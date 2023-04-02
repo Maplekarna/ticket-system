@@ -34,7 +34,7 @@ public class LoginController {
             // Create a new session, put user ID as an attribute into the session object, and set the expiration time to 600 seconds.
             HttpSession session = request.getSession();
             session.setAttribute("user_id", requestBody.getUserId());
-            session.setMaxInactiveInterval(600);
+            session.setMaxInactiveInterval(6000);
 
             LoginResponseBody loginResponseBody = new LoginResponseBody(requestBody.getUserId(), nickname);
             response.setContentType("application/json;charset=UTF-8");
