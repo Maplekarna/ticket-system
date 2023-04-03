@@ -1,5 +1,6 @@
 package com.bht.ticketsystem.controller;
 
+import com.bht.ticketsystem.Exception.UnauthorizedException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -14,11 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LogoutController {
 
     @RequestMapping(value = "/logout", method = RequestMethod.POST)
-    public void logout(HttpServletRequest request, HttpServletResponse response) {
+    public void logout(HttpServletRequest request, HttpServletResponse response) throws UnauthorizedException {
         HttpSession session = request.getSession(false);
-        if (session != null) {
-            session.invalidate();
-        }
+        session.invalidate();
+
         Cookie cookie = new Cookie("JSESSIONID", null);
         cookie.setPath("/");
         cookie.setMaxAge(0);

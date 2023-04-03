@@ -1,18 +1,17 @@
 package com.bht.ticketsystem.controller;
 
+import com.bht.ticketsystem.entity.ResultJSONObject;
 import com.bht.ticketsystem.entity.db.User;
 import com.bht.ticketsystem.service.RegisterService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
-@Controller
+@RestController
 public class RegisterController {
     private final RegisterService registerService;
 
@@ -22,9 +21,14 @@ public class RegisterController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public void register(@RequestBody @Validated User user, HttpServletResponse response) throws IOException {
+    public ResultJSONObject register(@RequestBody @Validated User user, HttpServletResponse response) throws IOException {
+        ResultJSONObject result = null;
+
         if (!registerService.register(user)) {
-            response.setStatus(HttpServletResponse.SC_CONFLICT);
+            result = ResultJSONObject.userExistsError();
+        } else {
+            result = ResultJSONObject.success(user);
         }
+        return result;
     }
 }

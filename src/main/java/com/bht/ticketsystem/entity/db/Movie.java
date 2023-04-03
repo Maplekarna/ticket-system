@@ -77,15 +77,5 @@ public class Movie implements Serializable {
         return false;
     }
 
-    @Override
-    public String toString() {
-        String str1 = "ShowingId: " + showingId + "\n";
-        String str2 = "Name: " + name + "\n";
-        String str3 = "Time: " + time + "\n";
-        String str4 = "Remaining: " + remaining + "\n";
-        String str5 = "Price: " + price + "\n";
-
-        return str1 + str2 + str3 + str4 + str5;
-    }
 
 }
