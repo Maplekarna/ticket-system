@@ -1,10 +1,7 @@
 package com.bht.ticketsystem.entity.db;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.servlet.annotation.HttpConstraint;
+import jakarta.validation.constraints.Null;
 
 import java.io.Serializable;
 

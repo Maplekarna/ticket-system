@@ -1,14 +1,10 @@
 package com.bht.ticketsystem.entity.db;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 //@Entity
@@ -16,12 +12,15 @@ import java.util.Set;
 public class User implements Serializable {
 //    @Id
 
+    @NotNull(message = "user_id cannot be null")
     @JsonProperty("user_id")
     private String userId;
 
+    @NotNull(message = "password cannot be null")
     @JsonProperty("password")
     private String password;
 
+    @NotNull(message = "nickname cannot be null")
     @JsonProperty("nickname")
     private String nickname;
 

@@ -2,15 +2,10 @@ package com.bht.ticketsystem.dao;
 
 import com.bht.ticketsystem.entity.Information;
 import com.bht.ticketsystem.entity.db.Statistic;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
-import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 

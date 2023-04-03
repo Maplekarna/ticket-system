@@ -2,10 +2,15 @@ package com.bht.ticketsystem.entity.request;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Null;
 
 public class LoginRequestBody {
 
+    @NotNull(message = "user_id cannot be null")
     private final String userId;
+
+    @NotNull(message = "password cannot be null")
     private final String password;
 
 

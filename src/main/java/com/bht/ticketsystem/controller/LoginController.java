@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,7 +27,7 @@ public class LoginController {
 
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public void login(@RequestBody LoginRequestBody requestBody, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void login(@RequestBody @Validated LoginRequestBody requestBody, HttpServletRequest request, HttpServletResponse response) throws IOException {
         String nickname = loginService.verifyLogin(requestBody.getUserId(), requestBody.getPassword());
 
         // Create a new session for the user if user ID and password are correct, otherwise return Unauthorized error.
