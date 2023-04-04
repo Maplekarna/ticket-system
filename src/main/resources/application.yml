@@ -1,7 +1,18 @@
 spring:
-
   mvc:
     throw-exception-if-no-handler-found: true
+
+  jpa:
+    show-sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+
+  datasource:
+    url: jdbc:mysql://51.68.181.174:3306/ticketsystem?useSSL=false
+    username: ubuntu
+    password: Fsftx.942901
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
 #  web:
 #    resources:

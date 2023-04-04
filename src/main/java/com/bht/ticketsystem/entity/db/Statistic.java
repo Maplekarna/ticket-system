@@ -1,12 +1,16 @@
 package com.bht.ticketsystem.entity.db;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 import java.io.Serializable;
 
-//@Entity
-//@Table(name="statistics")
+@Entity
+@Table(name="statistics")
 public class Statistic implements Serializable {
 
-//    @Id
+    @Id
     private Integer showingId;
     private Integer ticketsSold;
     private Integer sales;
@@ -50,13 +54,4 @@ public class Statistic implements Serializable {
         return sales;
     }
 
-
-    @Override
-    public String toString() {
-        String str1 = "ShowingId: " + showingId + ", ";
-        String str2 = "TicketsSold: " + ticketsSold + ", ";
-        String str3 = "Sales: " + sales + " ";
-
-        return str1 + str2 + str3;
-    }
 }

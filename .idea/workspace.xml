@@ -5,35 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="60e78dff-35fb-464c-91b2-07cc820f552c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/GlobalExceptionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/controller/LogoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/controller/LogoutController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/controller/MovieController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/controller/MovieController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/controller/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/controller/RegisterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/controller/StatisticController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/controller/StatisticController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ticketsystem.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/TicketsystemApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/TicketsystemApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/dao/OrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/dao/OrderDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/entity/db/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/entity/db/Movie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/entity/db/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/entity/db/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/entity/db/Statistic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/entity/db/Statistic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/entity/db/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/entity/db/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/asset-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/asset-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/main.22fb94ad.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/main.22fb94ad.js.LICENSE.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/main.22fb94ad.js.map" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/GlobalExceptionHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/controller/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/controller/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/controller/LogoutController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/controller/LogoutController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/controller/MovieController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/controller/MovieController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/controller/OrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/controller/OrderController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/controller/RegisterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/controller/RegisterController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/controller/StatisticController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/controller/StatisticController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/TicketsystemApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/TicketsystemApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/dao/MovieDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/dao/MovieDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/dao/OrderDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/dao/OrderDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/entity/db/Movie.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/entity/db/Movie.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/entity/db/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/entity/db/Order.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/entity/db/Statistic.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/entity/db/Statistic.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/entity/db/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/entity/db/User.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,11 +57,22 @@
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/shuai/Documents/Projects/ticketsystem",
+    "last_opened_file_path": "/home/shuai/Documents/Projects/ticketSystem",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "spring.configuration.checksum": "009b9a2602736d2f5997ee83a59d15e7",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
   }
 }]]></component>
   <component name="RunManager">
@@ -91,10 +93,22 @@
       <option name="presentableId" value="Default" />
       <updated>1680564626789</updated>
       <workItem from="1680564627788" duration="87000" />
+      <workItem from="1680575851804" duration="6317000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

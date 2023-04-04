@@ -1,16 +1,19 @@
 package com.bht.ticketsystem.entity.db;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.validation.constraints.Null;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+
 
 import java.io.Serializable;
 
-//@Entity
-//@Table(name="movies")
+@Entity
+@Table(name="movies")
 public class Movie implements Serializable {
 
-    //@Id
-
+    @Id
     @JsonProperty("showing_id")
     private Integer showingId;
 
@@ -69,12 +72,10 @@ public class Movie implements Serializable {
         return price;
     }
 
-    public synchronized boolean changeRemaining(int x) {
+    public synchronized void changeRemaining(int x) {
         if (remaining >= x) {
             remaining -= x;
-            return true;
         }
-        return false;
     }
 
 

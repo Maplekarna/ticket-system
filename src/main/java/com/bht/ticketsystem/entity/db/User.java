@@ -1,16 +1,17 @@
 package com.bht.ticketsystem.entity.db;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-//@Entity
-//@Table(name="user")
+@Entity
+@Table(name="users")
 public class User implements Serializable {
-//    @Id
+    @Id
 
     @NotNull(message = "user_id cannot be null")
     @JsonProperty("user_id")
@@ -24,7 +25,7 @@ public class User implements Serializable {
     @JsonProperty("nickname")
     private String nickname;
 
-//    @OneToMany
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Order> orderSet;
 
     public User setUserId(String userId) {
@@ -37,10 +38,6 @@ public class User implements Serializable {
         return this;
     }
 
-    public User iniOrderSet() {
-        this.orderSet = new HashSet<>();
-        return this;
-    }
 
     public String getPassword() {
         return password;
@@ -61,14 +58,6 @@ public class User implements Serializable {
 
     public String getNickname() {
         return nickname;
-    }
-
-    @Override
-    public String toString() {
-        String str1 = "UserId: " + userId + ", ";
-        String str2 = "Nickname: " + nickname + " ";
-
-        return str1 + str2;
     }
 
 }

@@ -1,14 +1,17 @@
 package com.bht.ticketsystem.entity.db;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
+
 
 import java.io.Serializable;
 
-//@Entity
-//@Table(name = "orders")
-public class Order implements Serializable {
-//    @Id
 
+@Entity
+@Table(name = "orders")
+public class Order implements Serializable {
+
+    @Id
     @JsonProperty("order_id")
     private String orderId;
 
@@ -20,18 +23,19 @@ public class Order implements Serializable {
     @JsonProperty("showing_id")
     private Integer showingId;
 
-//    @Column(name="nickname")
     @JsonProperty("nickname")
     private String nickname;
 
-//    @Column(name="amount")
-    @JsonProperty("count")
-    private Integer count;
+    @JsonProperty("amount")
+    private Integer amount;
 
     @JsonProperty("booking_time")
     private String bookingTime;
 
-    private String userId;
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
+    @JoinColumn(name = "user_id")
+    private User user;
+
 
 
     public Order setOrderId(String orderId) {
@@ -54,8 +58,8 @@ public class Order implements Serializable {
         return this;
     }
 
-    public Order setCount(int count) {
-        this.count = count;
+    public Order setAmount(int amount) {
+        this.amount = amount;
         return this;
     }
 
@@ -64,22 +68,6 @@ public class Order implements Serializable {
         return this;
     }
 
-    public Order setUserId(String userId) {
-        this.userId = userId;
-        return this;
-    }
 
-
-    @Override
-    public String toString() {
-        String str1 = "Order number: " + orderId + "\n";
-        String str2 = "Movie name: " + nameOfMovie + "\n";
-        String str3 = "Showing id: " + showingId + "\n";
-        String str4 = "Nickname: " + nickname + "\n";
-        String str5 = "Count: " + count + "\n";
-        String str6 = "Booking time: " + bookingTime + "\n";
-
-        return str1 + str2 + str3 + str4 + str5 + str6;
-    }
 
 }

@@ -32,7 +32,7 @@ public class OrderDao {
         return new HashSet<>();
     }
 
-    public synchronized String createOrder(Movie movie, User user, int count, String currentTime) {
+    public synchronized String createOrder(Movie movie, User user, int amount, String currentTime) {
         String orderId = createOrderId();
 
         Order newOrder = new Order();
@@ -41,16 +41,13 @@ public class OrderDao {
                 .setNameOfMovie(movie.getName())
                 .setShowingId(movie.getShowingId())
                 .setNickname(user.getNickname())
-                .setCount(count)
-                .setBookingTime(currentTime)
-                .setUserId(user.getUserId());
+                .setAmount(amount)
+                .setBookingTime(currentTime);
 
 
         orderMap.put(orderId, newOrder);
 
-        if (user.getOrderSet() == null) {
-            user.iniOrderSet();
-        }
+
         user.getOrderSet().add(newOrder);
 
         latestOrderId = orderId;
