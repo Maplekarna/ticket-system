@@ -16,11 +16,6 @@ public class Information {
     @JsonProperty("count")
     Integer count;
 
-    @NotNull(message = "If you use postman to test, please type price.")
-    @JsonProperty("price")
-    Integer price;
-
-
 
 
     public Integer getCount() {
@@ -31,7 +26,4 @@ public class Information {
         return showingId;
     }
 
-    public Integer getPrice() {
-        return price;
-    }
 }

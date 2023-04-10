@@ -1,8 +1,6 @@
 package com.bht.ticketsystem.entity.db;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 
@@ -11,9 +9,22 @@ import java.io.Serializable;
 public class Statistic implements Serializable {
 
     @Id
+    @Column(name = "showing_id", nullable = false)
     private Integer showingId;
+
+
+    @Column(name = "tickets_sold", nullable = false)
     private Integer ticketsSold;
+
+
+    @Column(name = "sales", nullable = false)
     private Integer sales;
+
+    @MapsId
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinColumn(name = "showing_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    private Movie movie;
+
 
 
     public Statistic setShowingId(int showingId) {
@@ -31,9 +42,18 @@ public class Statistic implements Serializable {
         return this;
     }
 
+    public Statistic setMovie(Movie movie) {
+        this.movie = movie;
+        return this;
+    }
+
 
     public int getShowingId() {
         return showingId;
+    }
+
+    public Movie getMovie() {
+        return movie;
     }
 
     public synchronized int getTicketsSold() {

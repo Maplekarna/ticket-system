@@ -12,8 +12,10 @@ import java.io.Serializable;
 public class Order implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "order_id", nullable = false)
     @JsonProperty("order_id")
-    private String orderId;
+    private Integer orderId;
 
 
     @JsonProperty("movie_name")
@@ -33,15 +35,11 @@ public class Order implements Serializable {
     private String bookingTime;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private User user;
 
 
 
-    public Order setOrderId(String orderId) {
-        this.orderId = orderId;
-        return this;
-    }
 
     public Order setNameOfMovie(String nameOfMovie) {
         this.nameOfMovie = nameOfMovie;
@@ -65,6 +63,11 @@ public class Order implements Serializable {
 
     public Order setBookingTime(String bookingTime) {
         this.bookingTime = bookingTime;
+        return this;
+    }
+
+    public Order setUser(User user) {
+        this.user = user;
         return this;
     }
 

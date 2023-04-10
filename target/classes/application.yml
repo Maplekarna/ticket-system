@@ -8,6 +8,8 @@ spring:
     hibernate:
       ddl-auto: update
 
+
+
   datasource:
     url: jdbc:mysql://51.68.181.174:3306/ticketsystem?useSSL=false
     username: ubuntu

@@ -1,9 +1,7 @@
 package com.bht.ticketsystem.service;
 
-import com.bht.ticketsystem.dao.MovieDao;
-import com.bht.ticketsystem.dao.OrderDao;
-import com.bht.ticketsystem.dao.StatisticDao;
-import com.bht.ticketsystem.dao.UserDao;
+import com.bht.ticketsystem.Repository.OrderRepository;
+import com.bht.ticketsystem.Repository.UserRepository;
 import com.bht.ticketsystem.entity.Information;
 import com.bht.ticketsystem.entity.db.Movie;
 import com.bht.ticketsystem.entity.db.Order;
@@ -13,32 +11,46 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
 import java.util.Observable;
 import java.util.Set;
 
 @Service
 public class OrderService extends Observable {
-    private final MovieDao movieDao;
-    private final StatisticDao statisticDao;
-    private final OrderDao orderDao;
-    private final UserDao userDao;
+
+
+    private final MovieService movieService;
+    private final StatisticService statisticService;
+
+    private final UserRepository userRepository;
+
+
 
     @Autowired
-    public OrderService(MovieDao movieDao, StatisticDao statisticDao, OrderDao orderDao, UserDao userDao) {
-        this.movieDao = movieDao;
-        this.statisticDao = statisticDao;
-        this.orderDao = orderDao;
-        this.userDao = userDao;
+    public OrderService(MovieService movieService, StatisticService statisticService, UserRepository userRepository) {
+        this.movieService = movieService;
+        this.statisticService = statisticService;
+        this.userRepository = userRepository;
 
-        addObserver(movieDao);
-        addObserver(statisticDao);
+
+
+        addObserver(movieService);
+        addObserver(statisticService);
 
 
     }
 
     public synchronized Set<Order> getOrderHistory(String userId) {
-        User user = userDao.getUserByUserId(userId);
-        return orderDao.getOrderHistory(user);
+        User user = userRepository.findById(userId).orElse(null);
+        if (user == null) return new HashSet<>();
+
+        Set<Order> orders = user.getOrderSet();
+        if (orders != null) {
+            return orders;
+        }
+
+
+        return new HashSet<>();
     }
 
 
@@ -47,18 +59,13 @@ public class OrderService extends Observable {
         int showingId = information.getShowingId();
         int count = information.getCount();
 
-        Movie movie = movieDao.getMovieByShowingId(showingId);
-        User user = userDao.getUserByUserId(userId);
+        Movie movie = movieService.getMovieByShowingId(showingId);
+        User user = userRepository.findById(userId).orElse(null);
 
-//        String orderId = orderDao.createOrder(movie, user, count, getCurrentTime());
-//
-//        if (orderId != null) {
-//            setChanged();
-//            notifyObservers(information);
-//        }
 
         try {
-            String orderId = orderDao.createOrder(movie, user, count, getCurrentTime());
+            assert user != null;
+            addOrderByUser(movie, user, count, getCurrentTime());
             setChanged();
             notifyObservers(information);
         } catch (Exception e) {
@@ -73,5 +80,23 @@ public class OrderService extends Observable {
         LocalDateTime currentTime = LocalDateTime.now();
         return dtf.format(currentTime);
     }
+
+
+    public synchronized void addOrderByUser(Movie movie, User user, int amount, String currentTime) {
+        Order newOrder = new Order();
+
+        newOrder.setNameOfMovie(movie.getName())
+                .setShowingId(movie.getShowingId())
+                .setNickname(user.getNickname())
+                .setAmount(amount)
+                .setBookingTime(currentTime)
+                .setUser(user);
+
+        user.getOrderSet().add(newOrder);
+        userRepository.save(user);
+
+    }
+
+
 
 }

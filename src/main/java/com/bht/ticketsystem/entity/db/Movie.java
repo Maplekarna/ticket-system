@@ -1,11 +1,8 @@
 package com.bht.ticketsystem.entity.db;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
-
+import jakarta.persistence.*;
+import java.util.*;
 
 import java.io.Serializable;
 
@@ -15,6 +12,7 @@ public class Movie implements Serializable {
 
     @Id
     @JsonProperty("showing_id")
+    @Column(name = "showing_id", nullable = false)
     private Integer showingId;
 
     @JsonProperty("name")
@@ -28,6 +26,10 @@ public class Movie implements Serializable {
 
     @JsonProperty("price")
     private Integer price;
+
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Schedule> scheduleSet;
+
 
     public Movie setShowingId(int showingId) {
         this.showingId = showingId;
@@ -71,6 +73,15 @@ public class Movie implements Serializable {
     public int getPrice() {
         return price;
     }
+
+    public String getTime() {
+        return time;
+    }
+
+    public Set<Schedule> getScheduleSet() {
+        return scheduleSet;
+    }
+
 
     public synchronized void changeRemaining(int x) {
         if (remaining >= x) {

@@ -1,4 +1,4 @@
-package com.bht.ticketsystem;
+package com.bht.ticketsystem.Configure;
 
 import com.bht.ticketsystem.Interceptor.SessionInterceptor;
 import org.springframework.context.annotation.Configuration;
