@@ -21,25 +21,17 @@ import java.util.Set;
 
 @Service
 public class OrderService extends Observable {
-
-
     private final MovieService movieService;
-    private final StatisticService statisticService;
-
     private final UserRepository userRepository;
 
 
 
     @Autowired
-    public OrderService(MovieService movieService, StatisticService statisticService, UserRepository userRepository) {
+    public OrderService(MovieService movieService, UserRepository userRepository) {
         this.movieService = movieService;
-        this.statisticService = statisticService;
         this.userRepository = userRepository;
 
-
-
         addObserver(movieService);
-        addObserver(statisticService);
 
 
     }

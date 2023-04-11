@@ -6,6 +6,7 @@ import com.bht.ticketsystem.entity.Information;
 import com.bht.ticketsystem.entity.db.Movie;
 import com.bht.ticketsystem.entity.db.Schedule;
 
+import com.bht.ticketsystem.entity.db.Statistic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -29,12 +30,10 @@ public class MovieService implements Observer {
 
     private final MovieRepository movieRepository;
 
-    private final StatisticRepository statisticRepository;
 
     @Autowired
-    public MovieService(MovieRepository movieRepository, StatisticRepository statisticRepository) {
+    public MovieService(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
-        this.statisticRepository = statisticRepository;
     }
 
     public synchronized List<Movie> showMovieList() {
@@ -42,7 +41,7 @@ public class MovieService implements Observer {
 //        return movieRepository.findAll();
     }
 
-    public synchronized List<Movie> showMovieList(int index) {
+    public synchronized List<Movie> showMovieList(Integer index) {
         Pageable pageable = PageRequest.of(index, 2);
 
         Slice<Movie> movieSlice = movieRepository.findAll(pageable);
@@ -77,15 +76,18 @@ public class MovieService implements Observer {
         if (remaining >= count) {
             remaining -= count;
         }
-
         movie.setRemaining(remaining);
-//
-//        Statistic statistic = movie.getStatistic();
-//
-//        if (statistic != null) {
-//            statistic.setTicketSold(statistic.getTicketsSold() + count);
-//            statistic.setSales(statistic.getSales() + count * movie.getPrice());
-//        }
+
+        Statistic statistic = movie.getStatistic();
+        if (statistic == null) {
+            statistic = new Statistic();
+            statistic.setTicketSold(0).setSales(0);
+        }
+        statistic.setTicketSold(statistic.getTicketsSold() + count);
+        statistic.setSales(statistic.getSales() + count * movie.getPrice());
+
+        movie.setStatistic(statistic);
+        statistic.setMovie(movie);
 
         movieRepository.save(movie);
 

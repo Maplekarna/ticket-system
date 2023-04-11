@@ -33,7 +33,7 @@ public class MovieController {
     }
 
     @RequestMapping(value = "/moviesOnPage", method = RequestMethod.GET)
-    public ResultJSONObject showMovieListService(@RequestParam(value = "page", required = false) int page, HttpServletResponse response)  {
+    public ResultJSONObject showMovieListService(@RequestParam(value = "page", required = false) Integer page, HttpServletResponse response)  {
         return ResultJSONObject.success(movieService.showMovieList(page));
     }
 

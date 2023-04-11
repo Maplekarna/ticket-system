@@ -5,13 +5,10 @@ import com.bht.ticketsystem.Repository.StatisticRepository;
 import com.bht.ticketsystem.entity.db.Movie;
 import com.bht.ticketsystem.entity.db.Schedule;
 
-import com.bht.ticketsystem.entity.db.Statistic;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
 import java.util.Set;
 
 
@@ -29,24 +26,14 @@ class MovieServiceTest {
         Movie movie1 = new Movie();
         movie1.setShowingId(100).setName("Shushan Tale").setTime("2022-10-12 09:10:00").setRemaining(200).setPrice(150);
 
-        Statistic statistic1 = new Statistic();
-        statistic1.setTicketSold(0).setSales(0);
-
-        movie1.setStatistic(statistic1);
-        statistic1.setMovie(movie1);
+//        Statistic statistic1 = new Statistic();
+//        statistic1.setTicketSold(0).setSales(0);
+//
+//        movie1.setStatistic(statistic1);
+//        statistic1.setMovie(movie1);
 
         movieRepository.save(movie1);
         //statisticRepository.save(statistic1);
-
-
-
-//        Optional<Movie> movieOptional = movieRepository.findById(100);
-//        if (movieOptional.isPresent()) {
-//            Movie persistMovie = movieOptional.get();
-//            statistic1.setMovie(persistMovie);
-//            statisticRepository.save(statistic1);
-//
-//        }
 
 
 
