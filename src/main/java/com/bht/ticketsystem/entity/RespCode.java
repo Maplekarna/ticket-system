@@ -11,7 +11,7 @@ public enum RespCode {
 
     UNAUTHORIZED_ERROR(403, "unauthorized user", ""),
     USER_EXISTS_ERROR(409, "User exists", ""),
-    USER_NOT_EXISTS(-1, "User doesn't exist", "");
+    USER_NOT_EXISTS(-1, "User doesn't exist", ""), VERSION_ERROR(-200, "Version collision", "");
 
 
     private final Integer resultCode;

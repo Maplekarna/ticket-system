@@ -6,6 +6,7 @@ spring:
     show-sql: true
     open-in-view: false
     hibernate:
+      format_sql: true
       ddl-auto: update
 
 

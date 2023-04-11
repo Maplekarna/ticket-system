@@ -1,5 +1,6 @@
 package com.bht.ticketsystem.entity.db;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import java.util.*;
@@ -28,7 +29,17 @@ public class Movie implements Serializable {
     private Integer price;
 
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
     private Set<Schedule> scheduleSet;
+
+
+    @OneToOne(mappedBy = "movie", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Statistic statistic;
+
+
+    @Version
+    private Integer version;
 
 
     public Movie setShowingId(int showingId) {
@@ -54,6 +65,15 @@ public class Movie implements Serializable {
     public Movie setPrice(int price) {
         this.price = price;
         return this;
+    }
+
+    public Movie setStatistic(Statistic statistic) {
+        this.statistic = statistic;
+        return this;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 
 
@@ -82,12 +102,20 @@ public class Movie implements Serializable {
         return scheduleSet;
     }
 
-
-    public synchronized void changeRemaining(int x) {
-        if (remaining >= x) {
-            remaining -= x;
-        }
+    public Statistic getStatistic() {
+        return statistic;
     }
 
+
+
+    public Integer getVersion() {
+        return version;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Movie name:" + getName();
+    }
 
 }

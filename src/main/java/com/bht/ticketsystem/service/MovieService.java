@@ -1,11 +1,18 @@
 package com.bht.ticketsystem.service;
 
 import com.bht.ticketsystem.Repository.MovieRepository;
+import com.bht.ticketsystem.Repository.StatisticRepository;
 import com.bht.ticketsystem.entity.Information;
 import com.bht.ticketsystem.entity.db.Movie;
 import com.bht.ticketsystem.entity.db.Schedule;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.List;
 import java.util.Observable;
@@ -22,13 +29,25 @@ public class MovieService implements Observer {
 
     private final MovieRepository movieRepository;
 
+    private final StatisticRepository statisticRepository;
+
     @Autowired
-    public MovieService(MovieRepository movieRepository) {
+    public MovieService(MovieRepository movieRepository, StatisticRepository statisticRepository) {
         this.movieRepository = movieRepository;
+        this.statisticRepository = statisticRepository;
     }
 
     public synchronized List<Movie> showMovieList() {
-        return movieRepository.findAll();
+        return showMovieList(0);
+//        return movieRepository.findAll();
+    }
+
+    public synchronized List<Movie> showMovieList(int index) {
+        Pageable pageable = PageRequest.of(index, 2);
+
+        Slice<Movie> movieSlice = movieRepository.findAll(pageable);
+
+        return movieSlice.getContent();
     }
 
     public synchronized Movie getMovieByShowingId(int showingId) {
@@ -37,6 +56,7 @@ public class MovieService implements Observer {
 
 
     @Override
+    @Transactional
     public synchronized void update(Observable observable, Object o) {
         Runnable runnable = new Runnable() {
             @Override
@@ -48,9 +68,25 @@ public class MovieService implements Observer {
         executorService.submit(runnable);
     }
 
+
+
     private synchronized void reserve(int showingId, int count) {
         Movie movie = getMovieByShowingId(showingId);
-        movie.changeRemaining(count);
+
+        int remaining = movie.getRemaining();
+        if (remaining >= count) {
+            remaining -= count;
+        }
+
+        movie.setRemaining(remaining);
+//
+//        Statistic statistic = movie.getStatistic();
+//
+//        if (statistic != null) {
+//            statistic.setTicketSold(statistic.getTicketsSold() + count);
+//            statistic.setSales(statistic.getSales() + count * movie.getPrice());
+//        }
+
         movieRepository.save(movie);
 
     }

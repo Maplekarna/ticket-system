@@ -59,6 +59,11 @@ public class ResultJSONObject<R, D> implements Serializable {
         return new ResultJSONObject<>(RespCode.UNAUTHORIZED_ERROR, reason);
     }
 
+    public static ResultJSONObject versionError(String reason) {
+        return new ResultJSONObject<>(RespCode.VERSION_ERROR, reason);
+    }
+
+
     public static ResultJSONObject userExistsError() {
         return new ResultJSONObject<>(RespCode.USER_EXISTS_ERROR);
     }

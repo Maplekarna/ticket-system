@@ -1,6 +1,7 @@
 package com.bht.ticketsystem.Handler;
 
 import com.bht.ticketsystem.Exception.UnauthorizedException;
+import com.bht.ticketsystem.Exception.VersionCollisionException;
 import com.bht.ticketsystem.entity.ResultJSONObject;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
@@ -27,10 +28,17 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(value = {UnauthorizedException.class})
-    public ResultJSONObject UnauthorizedException(UnauthorizedException exception) {
+    public ResultJSONObject unauthorizedException(UnauthorizedException exception) {
         logger.warn(exception.getMessage(), exception);
         return ResultJSONObject.unauthorizedError(exception.getMessage());
     }
+
+    @ExceptionHandler(value = {VersionCollisionException.class})
+    public ResultJSONObject versionCollisionException(VersionCollisionException exception) {
+        logger.warn((exception.getMessage()), exception);
+        return ResultJSONObject.versionError(exception.getMessage());
+    }
+
 
     @ExceptionHandler(value = {BindException.class})
     @ResponseBody

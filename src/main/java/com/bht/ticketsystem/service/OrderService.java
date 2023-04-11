@@ -1,13 +1,17 @@
 package com.bht.ticketsystem.service;
 
+import com.bht.ticketsystem.Exception.VersionCollisionException;
 import com.bht.ticketsystem.Repository.OrderRepository;
 import com.bht.ticketsystem.Repository.UserRepository;
 import com.bht.ticketsystem.entity.Information;
 import com.bht.ticketsystem.entity.db.Movie;
 import com.bht.ticketsystem.entity.db.Order;
 import com.bht.ticketsystem.entity.db.User;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -54,8 +58,8 @@ public class OrderService extends Observable {
     }
 
 
-    /** Private Methods. */
-    public synchronized void reserveSlots(String userId, Information information) throws Exception {
+    @Transactional
+    public synchronized void reserveSlots(String userId, Information information) throws VersionCollisionException {
         int showingId = information.getShowingId();
         int count = information.getCount();
 
@@ -63,14 +67,15 @@ public class OrderService extends Observable {
         User user = userRepository.findById(userId).orElse(null);
 
 
-        try {
+        if (movie.getVersion().equals(information.getVersion())) {
             assert user != null;
             addOrderByUser(movie, user, count, getCurrentTime());
             setChanged();
             notifyObservers(information);
-        } catch (Exception e) {
-            throw new Exception("Thread excpetion unkown.");
+        } else {
+            throw new VersionCollisionException();
         }
+
 
     }
 
@@ -82,6 +87,8 @@ public class OrderService extends Observable {
     }
 
 
+
+    @Transactional
     public synchronized void addOrderByUser(Movie movie, User user, int amount, String currentTime) {
         Order newOrder = new Order();
 

@@ -16,6 +16,9 @@ public class Information {
     @JsonProperty("count")
     Integer count;
 
+    Integer version;
+
+
 
 
     public Integer getCount() {
@@ -25,5 +28,9 @@ public class Information {
     public Integer getShowingId() {
         return showingId;
     }
+
+    public Integer getVersion() {return version;}
+
+
 
 }

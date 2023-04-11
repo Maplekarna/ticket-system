@@ -9,6 +9,8 @@ import java.io.Serializable;
 public class Statistic implements Serializable {
 
     @Id
+    //@Column(name = "id", nullable = false)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "showing_id", nullable = false)
     private Integer showingId;
 
@@ -20,8 +22,9 @@ public class Statistic implements Serializable {
     @Column(name = "sales", nullable = false)
     private Integer sales;
 
+
+    @OneToOne
     @MapsId
-    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "showing_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Movie movie;
 
@@ -48,6 +51,7 @@ public class Statistic implements Serializable {
     }
 
 
+
     public int getShowingId() {
         return showingId;
     }
@@ -64,14 +68,5 @@ public class Statistic implements Serializable {
         return sales;
     }
 
-    public synchronized int ticketsAdd(int x) {
-        ticketsSold += x;
-        return ticketsSold;
-    }
-
-    public synchronized int salesAdd(int x) {
-        sales += x;
-        return sales;
-    }
 
 }
