@@ -9,45 +9,51 @@ import com.bht.ticketsystem.entity.db.Order;
 import com.bht.ticketsystem.entity.db.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.HashSet;
-import java.util.Observable;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class OrderService extends Observable {
     private final MovieService movieService;
     private final UserRepository userRepository;
 
+    private final OrderRepository orderRepository;
+
 
 
     @Autowired
-    public OrderService(MovieService movieService, UserRepository userRepository) {
+    public OrderService(MovieService movieService, UserRepository userRepository, OrderRepository orderRepository) {
         this.movieService = movieService;
         this.userRepository = userRepository;
+        this.orderRepository = orderRepository;
 
         addObserver(movieService);
 
 
     }
 
-    public synchronized Set<Order> getOrderHistory(String userId) {
-        User user = userRepository.findById(userId).orElse(null);
-        if (user == null) return new HashSet<>();
 
-        Set<Order> orders = user.getOrderSet();
-        if (orders != null) {
-            return orders;
-        }
-
-
-        return new HashSet<>();
+    public synchronized List<Order> getOrderHistory(String userId) {
+       return getOrderHistory(userId, 0);
     }
+
+    public synchronized List<Order> getOrderHistory(String userId, Integer page) {
+        Pageable pageable = PageRequest.of(page, 5);
+        Slice<Order> orderSlice = orderRepository.findByUserId(userId, pageable);
+        return orderSlice.getContent();
+
+    }
+
+
 
 
     @Transactional
@@ -71,15 +77,6 @@ public class OrderService extends Observable {
 
     }
 
-
-    private static String getCurrentTime() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        LocalDateTime currentTime = LocalDateTime.now();
-        return dtf.format(currentTime);
-    }
-
-
-
     @Transactional
     public synchronized void addOrderByUser(Movie movie, User user, int amount, String currentTime) {
         Order newOrder = new Order();
@@ -91,11 +88,33 @@ public class OrderService extends Observable {
                 .setBookingTime(currentTime)
                 .setUser(user);
 
-        user.getOrderSet().add(newOrder);
+        user.getOrderList().add(newOrder);
         userRepository.save(user);
 
     }
 
 
+    private static String getCurrentTime() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime currentTime = LocalDateTime.now();
+        return dtf.format(currentTime);
+    }
+
+
+
+
+
+    //    public synchronized List<Order> getOrderHistory(String userId) {
+//        User user = userRepository.findById(userId).orElse(null);
+//        if (user == null) return new ArrayList<>();
+//
+//        List<Order> orders = user.getOrderList();
+//        if (orders != null) {
+//            return orders;
+//        }
+//
+//
+//        return new ArrayList<>();
+//    }
 
 }

@@ -1,21 +1,19 @@
 package com.bht.ticketsystem.service;
 
-import com.bht.ticketsystem.Exception.VersionCollisionException;
-import com.bht.ticketsystem.Repository.MovieRepository;
+
 import com.bht.ticketsystem.Repository.StatisticRepository;
-import com.bht.ticketsystem.entity.Information;
-import com.bht.ticketsystem.entity.db.Movie;
+
 import com.bht.ticketsystem.entity.db.Statistic;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
+
 
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
-import java.util.Optional;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+
 
 @Service
 public class StatisticService {
@@ -30,8 +28,18 @@ public class StatisticService {
     }
 
     public synchronized List<Statistic> getStatic() {
-        return statisticRepository.findAll();
+        return getStatic(0);
     }
+
+    public synchronized List<Statistic> getStatic(Integer page) {
+        Pageable pageable = PageRequest.of(page, 5);
+
+        Slice<Statistic> statisticSlice = statisticRepository.findAll(pageable);
+
+        return statisticSlice.getContent();
+
+    }
+
 
 //    @Override
 //    @Transactional

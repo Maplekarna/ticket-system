@@ -25,7 +25,7 @@ public class SessionInterceptor implements HandlerInterceptor {
     }
 
     private boolean cannotPassDirectly(String path) {
-        return path.contains("/logout") || path.contains("/orderHistory") || path.contains("/makeOrder") || path.contains("/statistics");
+        return path.contains("/logout") || path.contains("/orderHistory") || path.contains("/makeOrder") || path.contains("/statistics") || path.contains("/statisticsOnPage");
     }
 
     private void checkSessionExist(HttpServletRequest request) throws Exception {

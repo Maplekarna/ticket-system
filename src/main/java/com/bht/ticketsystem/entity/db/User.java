@@ -5,13 +5,14 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name="users")
 public class User implements Serializable {
-    @Id
 
+    @Id
     @NotNull(message = "user_id cannot be null")
     @JsonProperty("user_id")
     private String userId;
@@ -25,7 +26,7 @@ public class User implements Serializable {
     private String nickname;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Order> orderSet;
+    private List<Order> orderList;
 
     public User setUserId(String userId) {
         this.userId = userId;
@@ -33,7 +34,7 @@ public class User implements Serializable {
     }
 
     public User setNickname(String nickname) {
-        this.nickname =nickname;
+        this.nickname = nickname;
         return this;
     }
 
@@ -46,8 +47,8 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Set<Order> getOrderSet() {
-        return orderSet;
+    public List<Order> getOrderList() {
+        return orderList;
     }
 
 

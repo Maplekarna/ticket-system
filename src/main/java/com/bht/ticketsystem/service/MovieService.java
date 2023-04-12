@@ -1,7 +1,6 @@
 package com.bht.ticketsystem.service;
 
 import com.bht.ticketsystem.Repository.MovieRepository;
-import com.bht.ticketsystem.Repository.StatisticRepository;
 import com.bht.ticketsystem.entity.Information;
 import com.bht.ticketsystem.entity.db.Movie;
 import com.bht.ticketsystem.entity.db.Schedule;
@@ -41,8 +40,8 @@ public class MovieService implements Observer {
 //        return movieRepository.findAll();
     }
 
-    public synchronized List<Movie> showMovieList(Integer index) {
-        Pageable pageable = PageRequest.of(index, 2);
+    public synchronized List<Movie> showMovieList(Integer page) {
+        Pageable pageable = PageRequest.of(page, 2);
 
         Slice<Movie> movieSlice = movieRepository.findAll(pageable);
 

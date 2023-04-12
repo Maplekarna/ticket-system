@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,6 +39,15 @@ public class OrderController {
         HttpSession session = request.getSession(false);
         String userId = (String) session.getAttribute("user_id");
         return ResultJSONObject.success(orderService.getOrderHistory(userId));
+
+    }
+
+
+    @RequestMapping(value = "/orderHistoryOnPage", method = RequestMethod.GET)
+    public ResultJSONObject showOrderHistoryService(HttpServletRequest request, @RequestParam(value = "page", required = false) Integer page, HttpServletResponse response) {
+        HttpSession session = request.getSession(false);
+        String userId = (String) session.getAttribute("user_id");
+        return ResultJSONObject.success(orderService.getOrderHistory(userId, page));
 
     }
 
