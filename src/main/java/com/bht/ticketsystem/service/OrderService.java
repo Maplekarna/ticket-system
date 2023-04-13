@@ -2,10 +2,12 @@ package com.bht.ticketsystem.service;
 
 import com.bht.ticketsystem.Exception.VersionCollisionException;
 import com.bht.ticketsystem.Repository.OrderRepository;
+import com.bht.ticketsystem.Repository.ScheduleRepository;
 import com.bht.ticketsystem.Repository.UserRepository;
 import com.bht.ticketsystem.entity.Information;
 import com.bht.ticketsystem.entity.db.Movie;
 import com.bht.ticketsystem.entity.db.Order;
+import com.bht.ticketsystem.entity.db.Schedule;
 import com.bht.ticketsystem.entity.db.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,13 +30,16 @@ public class OrderService extends Observable {
 
     private final OrderRepository orderRepository;
 
+    private final ScheduleRepository scheduleRepository;
+
 
 
     @Autowired
-    public OrderService(MovieService movieService, UserRepository userRepository, OrderRepository orderRepository) {
+    public OrderService(MovieService movieService, UserRepository userRepository, OrderRepository orderRepository, ScheduleRepository scheduleRepository) {
         this.movieService = movieService;
         this.userRepository = userRepository;
         this.orderRepository = orderRepository;
+        this.scheduleRepository = scheduleRepository;
 
         addObserver(movieService);
 
@@ -58,16 +63,16 @@ public class OrderService extends Observable {
 
     @Transactional
     public synchronized void reserveSlots(String userId, Information information) throws VersionCollisionException {
-        int showingId = information.getShowingId();
         int count = information.getCount();
+        Integer scheduleId = information.getScheduleId();
 
-        Movie movie = movieService.getMovieByShowingId(showingId);
         User user = userRepository.findById(userId).orElse(null);
+        Schedule schedule = scheduleRepository.findById(scheduleId).orElse(null);
 
-
-        if (movie.getVersion().equals(information.getVersion())) {
+        assert schedule != null;
+        if (schedule.getVersion().equals(information.getVersion())) {
             assert user != null;
-            addOrderByUser(movie, user, count, getCurrentTime());
+            addOrderByUser(schedule, user, count, getCurrentTime());
             setChanged();
             notifyObservers(information);
         } else {
@@ -78,8 +83,10 @@ public class OrderService extends Observable {
     }
 
     @Transactional
-    public synchronized void addOrderByUser(Movie movie, User user, int amount, String currentTime) {
+    public synchronized void addOrderByUser(Schedule schedule, User user, int amount, String currentTime) {
         Order newOrder = new Order();
+
+        Movie movie = schedule.getMovie();
 
         newOrder.setNameOfMovie(movie.getName())
                 .setShowingId(movie.getShowingId())
@@ -99,22 +106,5 @@ public class OrderService extends Observable {
         LocalDateTime currentTime = LocalDateTime.now();
         return dtf.format(currentTime);
     }
-
-
-
-
-
-    //    public synchronized List<Order> getOrderHistory(String userId) {
-//        User user = userRepository.findById(userId).orElse(null);
-//        if (user == null) return new ArrayList<>();
-//
-//        List<Order> orders = user.getOrderList();
-//        if (orders != null) {
-//            return orders;
-//        }
-//
-//
-//        return new ArrayList<>();
-//    }
 
 }

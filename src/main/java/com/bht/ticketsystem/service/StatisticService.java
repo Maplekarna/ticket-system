@@ -40,34 +40,4 @@ public class StatisticService {
 
     }
 
-
-//    @Override
-//    @Transactional
-//    public synchronized void update(Observable observable, Object o) {
-//        Runnable runnable = new Runnable() {
-//            @Override
-//            public void run() {
-//                Information information = (Information) o;
-//                updateStatistic(information.getShowingId(), information.getCount());
-//            }
-//        };
-//        executorService.submit(runnable);
-//    }
-//
-//    private void updateStatistic(Integer showingId, Integer count) {
-//        Movie movie = movieRepository.findById(showingId).orElse(null);
-//
-//        if (movie != null) {
-//            Statistic statistic = statisticRepository.findById(showingId).orElse(null);
-//            if (statistic != null) {
-//                statistic.setTicketSold(statistic.getTicketsSold() + count);
-//                statistic.setSales(statistic.getSales() + count * movie.getPrice());
-//
-//                statisticRepository.save(statistic);
-//            }
-//        }
-//
-//
-//    }
-
 }

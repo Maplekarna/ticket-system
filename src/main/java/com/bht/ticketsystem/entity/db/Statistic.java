@@ -22,6 +22,9 @@ public class Statistic implements Serializable {
     @Column(name = "sales", nullable = false)
     private Integer sales;
 
+    @Column(name = "name", nullable = false)
+    private String name;
+
 
     @OneToOne
     @MapsId
@@ -42,6 +45,11 @@ public class Statistic implements Serializable {
 
     public Statistic setSales(int sales) {
         this.sales = sales;
+        return this;
+    }
+
+    public Statistic setName(String name) {
+        this.name = name;
         return this;
     }
 
@@ -66,6 +74,10 @@ public class Statistic implements Serializable {
 
     public int getSales() {
         return sales;
+    }
+
+    public String getName() {
+        return name;
     }
 
 

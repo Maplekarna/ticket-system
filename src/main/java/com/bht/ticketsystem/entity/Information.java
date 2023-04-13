@@ -16,7 +16,11 @@ public class Information {
     @JsonProperty("count")
     Integer count;
 
+    @JsonProperty("version")
     Integer version;
+
+    @JsonProperty("scheduleId")
+    Integer scheduleId;
 
 
 
@@ -31,6 +35,9 @@ public class Information {
 
     public Integer getVersion() {return version;}
 
+    public Integer getScheduleId() {
+        return scheduleId;
+    }
 
 
 }

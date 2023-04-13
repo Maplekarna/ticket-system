@@ -1,6 +1,8 @@
 package com.bht.ticketsystem.service;
 
 import com.bht.ticketsystem.Repository.MovieRepository;
+import com.bht.ticketsystem.Repository.ScheduleRepository;
+import com.bht.ticketsystem.Repository.StatisticRepository;
 import com.bht.ticketsystem.entity.Information;
 import com.bht.ticketsystem.entity.db.Movie;
 import com.bht.ticketsystem.entity.db.Schedule;
@@ -14,10 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
-import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -28,24 +27,38 @@ public class MovieService implements Observer {
 
 
     private final MovieRepository movieRepository;
+    private final ScheduleRepository scheduleRepository;
+
+    private final StatisticRepository statisticRepository;
 
 
     @Autowired
-    public MovieService(MovieRepository movieRepository) {
+    public MovieService(MovieRepository movieRepository, ScheduleRepository scheduleRepository, StatisticRepository statisticRepository) {
         this.movieRepository = movieRepository;
+        this.scheduleRepository = scheduleRepository;
+        this.statisticRepository = statisticRepository;
     }
 
     public synchronized List<Movie> showMovieList() {
         return showMovieList(0);
-//        return movieRepository.findAll();
     }
 
     public synchronized List<Movie> showMovieList(Integer page) {
         Pageable pageable = PageRequest.of(page, 2);
+        List<Schedule> scheduleList = scheduleRepository.findAll(pageable).getContent();
 
-        Slice<Movie> movieSlice = movieRepository.findAll(pageable);
+        List<Movie> movieList = new ArrayList<>();
+        for (Schedule schedule : scheduleList) {
+            Movie movie = new Movie(schedule.getMovie());
+            movie.setTime(schedule.getTime());
+            movie.setPrice(schedule.getPrice());
+            movie.setRemaining(schedule.getRemaining());
+            movie.setVersion(schedule.getVersion());
+            movie.setScheduleId(schedule.getId());
+            movieList.add(movie);
+        }
 
-        return movieSlice.getContent();
+        return movieList;
     }
 
     public synchronized Movie getMovieByShowingId(int showingId) {
@@ -60,7 +73,7 @@ public class MovieService implements Observer {
             @Override
             public void run() {
                 Information information = (Information) o;
-                reserve(information.getShowingId(), information.getCount());
+                reserve(information.getShowingId(), information.getCount(), information.getScheduleId());
             }
         };
         executorService.submit(runnable);
@@ -68,22 +81,30 @@ public class MovieService implements Observer {
 
 
 
-    private synchronized void reserve(int showingId, int count) {
-        Movie movie = getMovieByShowingId(showingId);
+    private synchronized void reserve(Integer showingId, int count, Integer scheduleId) {
+        Schedule schedule = scheduleRepository.findById(scheduleId).orElse(null);
 
-        int remaining = movie.getRemaining();
+        assert schedule != null;
+
+        int remaining = schedule.getRemaining();
         if (remaining >= count) {
             remaining -= count;
         }
-        movie.setRemaining(remaining);
+        schedule.setRemaining(remaining);
 
+        scheduleRepository.save(schedule);
+
+
+
+        Movie movie = movieRepository.findById(showingId).orElse(null);
+        assert movie != null;
         Statistic statistic = movie.getStatistic();
         if (statistic == null) {
             statistic = new Statistic();
-            statistic.setTicketSold(0).setSales(0);
+            statistic.setTicketSold(0).setSales(0).setName(movie.getName());
         }
         statistic.setTicketSold(statistic.getTicketsSold() + count);
-        statistic.setSales(statistic.getSales() + count * movie.getPrice());
+        statistic.setSales(statistic.getSales() + count * schedule.getPrice());
 
         movie.setStatistic(statistic);
         statistic.setMovie(movie);
@@ -92,33 +113,6 @@ public class MovieService implements Observer {
 
     }
 
-
-
-    public void addScheduleByMovie() {
-        Integer showingId = 100;
-        String time = "2022-10-12 09:10:00";
-
-        Movie movie = movieRepository.findById(showingId).orElse(null);
-        if (movie == null) return;
-
-
-
-        Set<Schedule> scheduleSet = movie.getScheduleSet();
-        for (Schedule schedule : scheduleSet) {
-            if (schedule.getTime().equals(time)) return;
-        }
-
-        Schedule newSchedule = new Schedule();
-        newSchedule.setPrice(movie.getPrice()).setTime(time);
-
-        //newSchedule.setMovie(movie);
-
-        movie.getScheduleSet().add(newSchedule);
-
-        movieRepository.save(movie);
-
-
-    }
 
 
 }

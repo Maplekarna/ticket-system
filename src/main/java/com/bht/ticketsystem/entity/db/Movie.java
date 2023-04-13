@@ -14,23 +14,27 @@ public class Movie implements Serializable {
     @Id
     @JsonProperty("showing_id")
     @Column(name = "showing_id", nullable = false)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer showingId;
 
     @JsonProperty("name")
     private String name;
 
     @JsonProperty("time")
+    @Transient
     private String time;
 
     @JsonProperty("remaining")
+    @Transient
     private Integer remaining;
 
     @JsonProperty("price")
+    @Transient
     private Integer price;
 
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIgnore
-    private Set<Schedule> scheduleSet;
+    private List<Schedule> scheduleList;
 
 
     @OneToOne(mappedBy = "movie", cascade = CascadeType.ALL)
@@ -38,8 +42,29 @@ public class Movie implements Serializable {
     private Statistic statistic;
 
 
-    @Version
+    @Transient
     private Integer version;
+
+    @Transient
+    private Integer scheduleId;
+
+
+    public Movie() {
+
+    }
+
+    public Movie(Movie movie) {
+        this.showingId = movie.getShowingId();
+        this.time = movie.getTime();
+        this.name = movie.getName();
+        this.remaining = movie.getRemaining();
+        this.price = movie.getPrice();
+        this.scheduleList = movie.getScheduleList();
+        this.statistic = movie.getStatistic();
+        this.version = movie.getVersion();
+        this.scheduleId = movie.getScheduleId();
+
+    }
 
 
     public Movie setShowingId(int showingId) {
@@ -72,8 +97,14 @@ public class Movie implements Serializable {
         return this;
     }
 
-    public void setVersion(Integer version) {
+    public Movie setVersion(Integer version) {
         this.version = version;
+        return this;
+    }
+
+    public Movie setScheduleId(Integer scheduleId) {
+        this.scheduleId = scheduleId;
+        return this;
     }
 
 
@@ -82,7 +113,7 @@ public class Movie implements Serializable {
         return showingId;
     }
 
-    public synchronized int getRemaining() {
+    public synchronized Integer getRemaining() {
         return remaining;
     }
 
@@ -90,7 +121,7 @@ public class Movie implements Serializable {
         return name;
     }
 
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
@@ -98,8 +129,8 @@ public class Movie implements Serializable {
         return time;
     }
 
-    public Set<Schedule> getScheduleSet() {
-        return scheduleSet;
+    public List<Schedule> getScheduleList() {
+        return scheduleList;
     }
 
     public Statistic getStatistic() {
@@ -107,15 +138,13 @@ public class Movie implements Serializable {
     }
 
 
-
     public Integer getVersion() {
         return version;
     }
 
 
-    @Override
-    public String toString() {
-        return "Movie name:" + getName();
+    public Integer getScheduleId() {
+        return scheduleId;
     }
 
 }
