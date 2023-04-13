@@ -1,9 +1,11 @@
 package com.bht.ticketsystem.entity.db;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.List;
 
 
 @Entity
@@ -29,14 +31,20 @@ public class Schedule implements Serializable {
     @Column(name = "price", nullable = false)
     private Integer price;
 
+    @Version
+    private Integer version;
+
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
     @JoinColumn(name = "showing_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @JsonIgnore
     private Movie movie;
 
 
-    @Version
-    private Integer version;
+    @OneToMany(mappedBy = "schedule")
+    @JsonIgnore
+    private List<Order> orderList;
+
 
 
     public String getTime() {
@@ -74,8 +82,9 @@ public class Schedule implements Serializable {
         return this;
     }
 
-    public void setMovie(Movie movie) {
+    public Schedule setMovie(Movie movie) {
         this.movie = movie;
+        return this;
     }
 
 
@@ -85,6 +94,10 @@ public class Schedule implements Serializable {
 
     public Integer getVersion() {
         return version;
+    }
+
+    public List<Order> getOrderList() {
+        return orderList;
     }
 
     @Override

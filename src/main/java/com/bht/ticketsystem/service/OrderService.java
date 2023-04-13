@@ -1,5 +1,6 @@
 package com.bht.ticketsystem.service;
 
+import com.bht.ticketsystem.Exception.InputErrorExcpetion;
 import com.bht.ticketsystem.Exception.VersionCollisionException;
 import com.bht.ticketsystem.Repository.OrderRepository;
 import com.bht.ticketsystem.Repository.ScheduleRepository;
@@ -16,7 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import org.springframework.validation.BindException;
 
 
 import java.time.LocalDateTime;
@@ -62,7 +63,7 @@ public class OrderService extends Observable {
 
 
     @Transactional
-    public synchronized void reserveSlots(String userId, Information information) throws VersionCollisionException {
+    public synchronized void reserveSlots(String userId, Information information) throws VersionCollisionException, InputErrorExcpetion {
         int count = information.getCount();
         Integer scheduleId = information.getScheduleId();
 
@@ -70,6 +71,10 @@ public class OrderService extends Observable {
         Schedule schedule = scheduleRepository.findById(scheduleId).orElse(null);
 
         assert schedule != null;
+        if (schedule.getMovie().getShowingId() != information.getShowingId()) {
+            throw new InputErrorExcpetion();
+        }
+
         if (schedule.getVersion().equals(information.getVersion())) {
             assert user != null;
             addOrderByUser(schedule, user, count, getCurrentTime());
@@ -93,7 +98,9 @@ public class OrderService extends Observable {
                 .setNickname(user.getNickname())
                 .setAmount(amount)
                 .setBookingTime(currentTime)
-                .setUser(user);
+                .setUser(user)
+                .setSchedule(schedule);
+
 
         user.getOrderList().add(newOrder);
         userRepository.save(user);

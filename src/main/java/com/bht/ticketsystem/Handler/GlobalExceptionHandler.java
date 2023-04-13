@@ -1,5 +1,6 @@
 package com.bht.ticketsystem.Handler;
 
+import com.bht.ticketsystem.Exception.InputErrorExcpetion;
 import com.bht.ticketsystem.Exception.UnauthorizedException;
 import com.bht.ticketsystem.Exception.VersionCollisionException;
 import com.bht.ticketsystem.entity.ResultJSONObject;
@@ -38,6 +39,13 @@ public class GlobalExceptionHandler {
         logger.warn((exception.getMessage()), exception);
         return ResultJSONObject.versionError(exception.getMessage());
     }
+
+    @ExceptionHandler(value = {InputErrorExcpetion.class})
+    public ResultJSONObject inputErrorException(InputErrorExcpetion exception) {
+        logger.warn((exception.getMessage()), exception);
+        return ResultJSONObject.inputError(exception.getMessage());
+    }
+
 
 
     @ExceptionHandler(value = {BindException.class})

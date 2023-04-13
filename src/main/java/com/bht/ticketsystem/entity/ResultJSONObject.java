@@ -72,6 +72,9 @@ public class ResultJSONObject<R, D> implements Serializable {
         return new ResultJSONObject<>(RespCode.USER_NOT_EXISTS);
     }
 
+    public static ResultJSONObject inputError(String reason) {
+        return new ResultJSONObject<>(RespCode.INPUT_ERROR, reason);
+    }
 
 
     private void setResultCode(Integer code) {

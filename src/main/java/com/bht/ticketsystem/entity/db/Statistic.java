@@ -1,5 +1,6 @@
 package com.bht.ticketsystem.entity.db;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -29,6 +30,7 @@ public class Statistic implements Serializable {
     @OneToOne
     @MapsId
     @JoinColumn(name = "showing_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @JsonIgnore
     private Movie movie;
 
 

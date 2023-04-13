@@ -5,24 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="60e78dff-35fb-464c-91b2-07cc820f552c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/service/ScheduleService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/bht/ticketsystem/service/ScheduleServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/Exception/InputErrorExcpetion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/js/main.e1dcac56.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/3114e37d-03b9-46b9-8ccf-c6567ae70dd6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3114e37d-03b9-46b9-8ccf-c6567ae70dd6.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/entity/Information.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/entity/Information.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/entity/db/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/entity/db/Movie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/Handler/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/Handler/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/entity/RespCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/entity/RespCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/entity/ResultJSONObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/entity/ResultJSONObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/entity/db/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/entity/db/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/entity/db/Schedule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/entity/db/Schedule.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/entity/db/Statistic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/entity/db/Statistic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/service/MovieService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/service/MovieService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/service/StatisticService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bht/ticketsystem/service/StatisticService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/bht/ticketsystem/service/MovieServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/bht/ticketsystem/service/MovieServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/entity/db/Movie.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/entity/db/Movie.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/asset-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/asset-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/main.838c4b80.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/main.e1dcac56.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/main.838c4b80.js.LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/main.e1dcac56.js.LICENSE.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/js/main.838c4b80.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/bht/ticketsystem/service/ScheduleServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/bht/ticketsystem/service/ScheduleServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/Handler/GlobalExceptionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/Handler/GlobalExceptionHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/entity/RespCode.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/entity/RespCode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/entity/ResultJSONObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/entity/ResultJSONObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/entity/db/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/entity/db/Order.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/entity/db/Schedule.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/entity/db/Schedule.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/service/MovieService$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/service/MovieService$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/entity/db/Statistic.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/entity/db/Statistic.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/service/MovieService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/service/MovieService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/service/OrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/service/OrderService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/bht/ticketsystem/service/MovieServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/bht/ticketsystem/service/MovieServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/service/ScheduleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bht/ticketsystem/service/ScheduleService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/bht/ticketsystem/service/ScheduleServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/bht/ticketsystem/service/ScheduleServiceTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,8 +45,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -72,7 +84,7 @@
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/shuai/Documents/Projects/ticketsystemfe&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/shuai/Downloads/Shuai_Feng_ticketsystem_hw3/ticketsystem&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -98,7 +110,7 @@
       <recent name="com.bht.ticketsystem.service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ScheduleServiceTest.iniSchedule">
+  <component name="RunManager" selected="Spring Boot.TicketsystemApplication">
     <configuration name="MovieServiceTest.addSchedule" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ticketsystem" />
       <extension name="coverage">
@@ -215,7 +227,10 @@
       <workItem from="1681252053220" duration="139000" />
       <workItem from="1681252199758" duration="5954000" />
       <workItem from="1681321260003" duration="4746000" />
-      <workItem from="1681343597318" duration="5186000" />
+      <workItem from="1681343597318" duration="8023000" />
+      <workItem from="1681358225305" duration="2927000" />
+      <workItem from="1681361170385" duration="12000" />
+      <workItem from="1681362021173" duration="54000" />
     </task>
     <servers />
   </component>

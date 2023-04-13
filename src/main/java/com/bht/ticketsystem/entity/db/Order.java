@@ -39,6 +39,9 @@ public class Order implements Serializable {
     private User user;
 
 
+    @ManyToOne
+    @JoinColumn(name = "schedule_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    private Schedule schedule;
 
 
     public Order setNameOfMovie(String nameOfMovie) {
@@ -71,6 +74,11 @@ public class Order implements Serializable {
         return this;
     }
 
+
+    public Order setSchedule(Schedule schedule) {
+        this.schedule = schedule;
+        return this;
+    }
 
 
 }

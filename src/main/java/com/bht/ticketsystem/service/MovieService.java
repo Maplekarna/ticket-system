@@ -44,7 +44,7 @@ public class MovieService implements Observer {
     }
 
     public synchronized List<Movie> showMovieList(Integer page) {
-        Pageable pageable = PageRequest.of(page, 2);
+        Pageable pageable = PageRequest.of(page, 4);
         List<Schedule> scheduleList = scheduleRepository.findAll(pageable).getContent();
 
         List<Movie> movieList = new ArrayList<>();

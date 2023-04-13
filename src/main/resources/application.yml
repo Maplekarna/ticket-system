@@ -6,15 +6,18 @@ spring:
     show-sql: true
     open-in-view: false
     hibernate:
-      format_sql: true
       ddl-auto: update
+
+#    properties:
+#      hibernate:
+#        format_sql: true
 
 
 
   datasource:
     url: jdbc:mysql://51.68.181.174:3306/ticketsystem?useSSL=false
     username: ubuntu
-    password: Fsftx.942901
+    password: Qwe.123456
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 #  web:
